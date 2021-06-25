@@ -5,7 +5,6 @@ import ch.qos.logback.classic.Logger;
 import org.slf4j.LoggerFactory;
 import ru.bibarsov.telegram.bots.client.repository.client.TelegramBotApi;
 import ru.bibarsov.telegram.bots.client.serialization.JsonHelper;
-import ru.bibarsov.telegram.bots.client.service.BasicDispatcher;
 import ru.bibarsov.telegram.bots.client.service.MessageService;
 import ru.bibarsov.telegram.bots.client.service.UpdatePollerService;
 import ru.bibarsov.telegram.bots.client.service.handler.Handler;
@@ -56,12 +55,11 @@ public class ExampleBotApplication {
         Handler<Command> pingHandler = new PingHandler(messageService);
 
         UpdatePollerService pollerService = new UpdatePollerService(
-            new BasicDispatcher<>(
-                workersThreadCount,
-                List.of(startHandler, pingHandler),
-                Command.class
-            ),
-            botApiKey //botApiKey
+            botApiKey,
+            workersThreadCount,
+            List.of(startHandler, pingHandler),
+            startHandler,
+            Command.class
         );
         pollerService.doJob();
     }
