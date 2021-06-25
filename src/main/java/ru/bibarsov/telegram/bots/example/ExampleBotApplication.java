@@ -7,7 +7,7 @@ import ru.bibarsov.telegram.bots.client.repository.client.TelegramBotApi;
 import ru.bibarsov.telegram.bots.client.serialization.JsonHelper;
 import ru.bibarsov.telegram.bots.client.service.MessageService;
 import ru.bibarsov.telegram.bots.client.service.UpdatePollerService;
-import ru.bibarsov.telegram.bots.client.service.handler.Handler;
+import ru.bibarsov.telegram.bots.client.service.handler.CommandHandler;
 import ru.bibarsov.telegram.bots.common.util.PropertiesReader;
 import ru.bibarsov.telegram.bots.example.service.handler.Command;
 import ru.bibarsov.telegram.bots.example.service.handler.PingHandler;
@@ -51,8 +51,8 @@ public class ExampleBotApplication {
         MessageService messageService = new MessageService(telegramBotApi);
 
         //handlers
-        Handler<Command> startHandler = new StartHandler(messageService);
-        Handler<Command> pingHandler = new PingHandler(messageService);
+        CommandHandler<Command> startHandler = new StartHandler(messageService);
+        CommandHandler<Command> pingHandler = new PingHandler(messageService);
 
         UpdatePollerService pollerService = new UpdatePollerService(
             botApiKey,
