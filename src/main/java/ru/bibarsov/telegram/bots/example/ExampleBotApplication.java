@@ -9,7 +9,7 @@ import ru.bibarsov.telegram.bots.client.service.MessageService;
 import ru.bibarsov.telegram.bots.client.service.UpdatePollerService;
 import ru.bibarsov.telegram.bots.client.service.handler.CommandHandler;
 import ru.bibarsov.telegram.bots.common.util.PropertiesReader;
-import ru.bibarsov.telegram.bots.example.service.handler.Command;
+import ru.bibarsov.telegram.bots.example.service.handler.CommandType;
 import ru.bibarsov.telegram.bots.example.service.handler.PingHandler;
 import ru.bibarsov.telegram.bots.example.service.handler.StartHandler;
 
@@ -51,15 +51,15 @@ public class ExampleBotApplication {
         MessageService messageService = new MessageService(telegramBotApi);
 
         //handlers
-        CommandHandler<Command> startHandler = new StartHandler(messageService);
-        CommandHandler<Command> pingHandler = new PingHandler(messageService);
+        CommandHandler<CommandType> startHandler = new StartHandler(messageService);
+        CommandHandler<CommandType> pingHandler = new PingHandler(messageService);
 
         UpdatePollerService pollerService = new UpdatePollerService(
             botApiKey,
             workersThreadCount,
             List.of(startHandler, pingHandler),
             startHandler,
-            Command.class
+            CommandType.class
         );
         pollerService.doJob();
     }

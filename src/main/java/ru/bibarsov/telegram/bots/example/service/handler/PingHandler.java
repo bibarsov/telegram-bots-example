@@ -8,7 +8,7 @@ import ru.bibarsov.telegram.bots.client.service.handler.CommandHandler;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public class PingHandler extends CommandHandler<Command> {
+public class PingHandler extends CommandHandler<CommandType> {
 
     private final MessageService messageService;
 
@@ -24,7 +24,7 @@ public class PingHandler extends CommandHandler<Command> {
     }
 
     @Override
-    public Command getCommand() {
-        return Command.PING;
+    public CommandType getCommand() {
+        return CommandType.PING;
     }
 }
