@@ -20,7 +20,7 @@ public class PingHandler extends CommandHandler<CommandType> {
     public void handlePrivateMessage(Message message) {
         Chat chat = message.chat;
         long userId = chat.id;
-        messageService.scheduleMessage(userId, "Pong");
+        messageService.scheduleMessage(String.valueOf(userId), "Pong");
     }
 
     @Override

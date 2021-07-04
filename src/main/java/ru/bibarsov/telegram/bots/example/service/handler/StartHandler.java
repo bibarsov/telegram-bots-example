@@ -20,7 +20,7 @@ public class StartHandler extends CommandHandler<CommandType> {
     public void handlePrivateMessage(Message message) {
         Chat chat = message.chat;
         long userId = chat.id;
-        messageService.scheduleMessage(userId, "Hello");
+        messageService.scheduleMessage(String.valueOf(userId), "Hello");
     }
 
     @Override
